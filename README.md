@@ -6,6 +6,6 @@
 ![image](https://github.com/user-attachments/assets/4506a802-1fa2-42a2-b62e-162a84b0e1db)
 
 
-# to build use pyinstaller
+### you can build the project using pyinstaller
 example usage:
 `pyinstaller --onefile PythonCommands/youtubedownload.py --name "Youtube Downloader"`
