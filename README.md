@@ -8,4 +8,4 @@
 
 ### you can build the project using pyinstaller
 example usage:
-`pyinstaller --onefile PythonCommands/youtubedownload.py --name "Youtube Downloader"`
+`pyinstaller --onefile youtubedownload.py --name "ytd"`
