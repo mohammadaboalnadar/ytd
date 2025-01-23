@@ -1,4 +1,4 @@
-import os
+import os, sys
 import yt_dlp
 import time
 import tkinter as tk
@@ -17,14 +17,19 @@ commands = {
 	"mp3": "bestaudio/best",
 }
 
-# Check for Cookies.txt file in the same directory as this script
-cookies = False
-scripts_dir = os.path.dirname(os.path.realpath(__file__))
-try:
-	with open(os.path.join(scripts_dir, 'Cookies.txt'), 'r') as f:
-		cookies = True
-except FileNotFoundError:
-	print("Cookies.txt not found. Cookies are needed to log in to Youtube to avoid restrictions. Please create a Cookies.txt file in the same directory as this script and add your youtube cookies to it. The cookies should be in the format of a Netscape cookie file.")
+# Check for Cookies.txt file in the same directory as this script or executable
+if getattr(sys, 'frozen', False):
+    # If the application is run as a bundle, the PyInstaller bootloader
+    # sets the sys.frozen attribute and this points to the executable path
+    base_path = sys.executable
+else:
+    base_path = os.path.dirname(__file__)
+
+cookiesPath = os.path.join(os.path.dirname(base_path), 'Cookies.txt')
+cookies = os.path.exists(cookiesPath)
+if not cookies:
+	print(cookiesPath + " not found.")
+	print("Cookies are needed to log in to Youtube to avoid restrictions. Please create a Cookies.txt file in the same directory as this script and add your youtube cookies to it. The cookies should be in the format of a Netscape cookie file.")
 	print("Script might not work without cookies.")
 	print()
 
